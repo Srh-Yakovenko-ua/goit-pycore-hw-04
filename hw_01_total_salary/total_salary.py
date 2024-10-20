@@ -4,23 +4,21 @@ import re
 pattern = r"-?\d+\.?\d*"
 
 
-def extract_and_sum_numbers(lines: List[str]) -> float:
+def extract_and_sum_numbers(employes: List[str]) -> float:
     """
-    Sum all numbers found in a list of strings.
+    Extracts numbers from a list of strings and returns their sum.
 
     Args:
-        lines (List[str]): Strings potentially containing numeric values.
+        lines (List[str]): A list of strings, each potentially containing numeric values.
 
     Returns:
-        float: Total sum of all numbers found.
+        float: The total sum of all numbers extracted from the list.
     """
-    total_sum = 0
-    for line in lines:
-        matches = re.findall(pattern, line)
-        for number in matches:
-            total_sum += float(number)
-
-    return total_sum
+    # Combine all strings into one large string to facilitate searching
+    combined_string = " ".join(employes)
+    # Use list comprehension to extract all salaries and convert them to floats
+    salaries = [float(num) for num in re.findall(pattern, combined_string)]
+    return sum(salaries)
 
 
 def total_salary(path: str) -> Optional[Tuple[float, float]]:
@@ -42,7 +40,6 @@ def total_salary(path: str) -> Optional[Tuple[float, float]]:
     try:
         with open(path, "r", encoding="utf-8") as file:
             employees_list = [line for line in file if line.strip()]
-
             if not employees_list:
                 raise ValueError(
                     "Employee list is empty. Please check the file content."
