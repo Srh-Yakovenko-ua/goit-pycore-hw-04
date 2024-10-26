@@ -46,7 +46,7 @@ def total_salary(path: str) -> Optional[Tuple[float, float]]:
                 )
 
             total = extract_and_sum_numbers(employees_list)
-            average_salary = total / len(employees_list)
+            average_salary = round(total / len(employees_list), 2)
 
             return total, average_salary
 
@@ -61,7 +61,9 @@ def total_salary(path: str) -> Optional[Tuple[float, float]]:
         return None, None
 
 
-path = "hw_01_total_salary/text.txt"
-total, average = total_salary(path)
+if __name__ == "__main__":
 
-print(f"Total salary amount: {total}$, Average salary: {average}$")
+    path = "hw_01_total_salary/text.txt"
+    total, average = total_salary(path)
+
+    print(f"Total salary amount: {total}$, Average salary: {average}$")
