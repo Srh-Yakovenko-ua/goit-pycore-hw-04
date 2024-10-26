@@ -1,4 +1,7 @@
-def parse_input(user_input):
+from typing import Tuple, List, Dict
+
+
+def parse_input(user_input: str) -> Tuple[str, List[str]]:
     """
     Parses user input into a command and arguments.
 
@@ -13,7 +16,7 @@ def parse_input(user_input):
     return cmd, args
 
 
-def add_contact(args, contacts):
+def add_contact(args: List[str], contacts: Dict[str, str]) -> str:
     """
     Adds a new contact to the contacts dictionary.
 
@@ -31,7 +34,7 @@ def add_contact(args, contacts):
     return "Contact added."
 
 
-def change_contact(args, contacts):
+def change_contact(args: List[str], contacts: Dict[str, str]) -> str:
     """
     Changes the phone number for an existing contact.
 
@@ -52,7 +55,7 @@ def change_contact(args, contacts):
         return "Error: Contact not found."
 
 
-def show_phone(args, contacts):
+def show_phone(args: List[str], contacts: Dict[str, str]) -> str:
     """
     Shows the phone number for a specified contact.
 
@@ -72,7 +75,7 @@ def show_phone(args, contacts):
         return "Error: Contact not found."
 
 
-def show_all(contacts):
+def show_all(contacts: Dict[str, str]) -> str:
     """
     Shows all contacts in the contacts dictionary.
 
@@ -87,7 +90,7 @@ def show_all(contacts):
     return "\n".join([f"{name}: {phone}" for name, phone in contacts.items()])
 
 
-def show_help():
+def show_help() -> str:
     """
     Returns a string with a list of available commands and their descriptions.
 
@@ -106,11 +109,11 @@ Available commands:
 """
 
 
-def main():
+def main() -> None:
     """
     Main function to interact with the user in a command loop.
     """
-    contacts = {}
+    contacts: Dict[str, str] = {}
     print("Welcome to the assistant bot!")
     print(show_help())  # Show help at the start
 
